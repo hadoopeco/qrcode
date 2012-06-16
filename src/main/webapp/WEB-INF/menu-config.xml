@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MenuConfig>
+    <Displayers>
+        <Displayer name="Velocity" type="net.sf.navigator.displayer.VelocityMenuDisplayer"/>
+    </Displayers>
+    <Menus>
+        <Menu name="MainMenu" title="mainMenu.title" page="/mainMenu" roles="ROLE_ADMIN,ROLE_USER,ROLE_TAOBAO"/>
+        <Menu name="UserMenu" title="menu.user" description="User Menu" page="/editProfile" roles="ROLE_ADMIN,ROLE_USER,ROLE_TAOBAO"/>
+        <Menu name="ConsoleMainMenu" title="menu.taobao" description="Taobao Menu" roles="ROLE_TAOBAO,ROLE_ADMIN" page="/goods/onsales">
+            <Item name="ViewGoods" title="menu.taobao.goods" page="/goods/onsales"  />
+            <Item name="Viewcodes" title="menu.taobao.qrcodes" page="/goods/getGencode"/>
+            <Item name="viewlog" title="menu.scan.record" page="/qr/list"/>
+            <Item name="products" title="menu.scan.product" page="/product/list"/>
+            <Item name="add" title="menu.product.add" page="/product/add"/>
+        </Menu>
+        <Menu name="AdminMenu" title="menu.admin" description="Admin Menu" roles="ROLE_ADMIN" width="120" page="/admin/users">
+            <Item name="ViewUsers" title="menu.admin.users" page="/admin/users"/>
+            <Item name="ActiveUsers" title="mainMenu.activeUsers" page="/admin/activeUsers"/>
+            <Item name="ReloadContext" title="menu.admin.reload" page="/admin/reload"/>
+            <Item name="FileUpload" title="menu.selectFile" page="/uploadFile"/>
+        </Menu>
+
+        <Menu name="Logout" title="user.logout" page="/logout" roles="ROLE_ADMIN,ROLE_USER,ROLE_TAOBAO"/>
+
+        <Menu name="ProductMenu" title="menu.product.product" page="/product/list" roles="ROLE_ADMIN">
+            <Item name="add" title="menu.product.add" page="/product/add"/>
+        </Menu>
+    </Menus>
+</MenuConfig>

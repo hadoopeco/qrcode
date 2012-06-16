@@ -1,0 +1,18 @@
+#macro( displayCssMenu $menu )
+  #if ($displayer.isAllowed($menu))
+      ## set menu title
+      #set ($title = $displayer.getMessage($menu.title))
+
+      #if (!$menu.parent) <h3><a href="#" title="Second slide" class="tooltip">$title</a></h3> #end
+      <div>
+      #foreach ($menuItem in $menu.components)
+        #if ($displayer.isAllowed($menuItem))
+          #set ($title = $displayer.getMessage($menuItem.title))
+          <a href="$menuItem.url" title="$title" #if($menuItem.target)target="$menuItem.target"#end>${title}</a><br>
+        #end
+      #end
+      </div>
+  #end
+#end
+
+#displayCssMenu($menu)

@@ -1,0 +1,29 @@
+<?xml version="1.0"  encoding="UTF-8" ?>
+
+<!--
+    =======================================================================
+      hello-ant 项目 ,学习ant工具的build file.
+      参照ant的jakarta-ant-1.6alpha的build.xml
+      Copyright (c) 2002 The Neusoft Software Foundation.  All rights
+      reserved.
+    =======================================================================
+-->
+<project default="copy">
+    <property name="basedir" value="E:/work/qrcode"/>
+    <property  name="target_dir" value="${basedir}/target"/>
+    <property  name="target_war" value="${target_dir}/qrcode-1.0-SNAPSHOT"/>
+    <property  name="target_page_dir" value="${target_dir}/qrcode-1.0-SNAPSHOT/"/>
+    <property  name="src_pages_dir" value="${basedir}/src/main/webapp"/>
+    <target name="copy" depends="tonative2ascii">
+        <copy todir="${target_page_dir}" >
+            <fileset dir="${src_pages_dir}"/>
+        </copy>
+    </target>
+
+    <target name="tonative2ascii">
+        <native2ascii encoding="UTF-8" src="${basedir}/src/main/resources" dest="${target_war}/WEB-INF/classes"
+        includes="**/*.properties"/>
+  </target>
+</project>
+
+

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd"
+       default-lazy-init="true">
+
+    <bean id="adminInterceptor" class="com.pupuly.webapp.interceptor.UserRoleAuthorizationInterceptor">
+        <property name="authorizedRoles" value="ROLE_ADMIN"/>
+    </bean>
+    
+    <bean id="signupAction" class="com.pupuly.webapp.action.SignupAction" scope="prototype">
+        <property name="userManager" ref="userManager"/>
+        <property name="roleManager" ref="roleManager"/>
+        <property name="mailEngine" ref="mailEngine"/>
+        <property name="mailMessage" ref="mailMessage"/>
+        <property name="templateName" value="accountCreated.vm"/>
+    </bean>
+
+
+    <bean id="userAction" class="com.pupuly.webapp.action.UserAction" scope="prototype">
+        <property name="userManager" ref="userManager"/>
+        <property name="roleManager" ref="roleManager"/>
+        <property name="mailEngine" ref="mailEngine"/>
+        <property name="mailMessage" ref="mailMessage"/>
+        <property name="templateName" value="accountCreated.vm"/>
+    </bean>
+
+
+
+    <bean id="passwordHintAction" class="com.pupuly.webapp.action.PasswordHintAction" scope="prototype">
+        <property name="userManager" ref="userManager"/>
+        <property name="mailEngine" ref="mailEngine"/>
+        <property name="mailMessage" ref="mailMessage"/>
+    </bean>
+
+    <bean id="taoBaoLoginAction" class="com.pupuly.webapp.action.TaoBaoLoginAction" scope="prototype">
+        <property name="userManager" ref="userManager"/>
+        <property name="roleManager" ref="roleManager"/>
+        <property name="userDetailsService" ref="userDao"/>
+        <property name="client" ref="client"/>
+        <property name="authenticationDetailsSource">
+            <bean class="org.springframework.security.authentication.AuthenticationDetailsSourceImpl"/>
+        </property>
+    </bean>
+
+    <bean id="taobaoGoodsAction" class="com.pupuly.webapp.action.taobao.TaobaoGoodsAction" scope="prototype">
+        <property name="userManager" ref="userManager"/>
+        <property name="roleManager" ref="roleManager"/>
+        <property name="qrImgService" ref="qrImgService"/>
+        <property name="docService" ref="docService"/>
+    </bean>
+
+    <bean id="mobileAction" class="com.pupuly.webapp.action.mobile.MobileAction" scope="prototype">
+        <property name="qrImgService" ref="qrImgService"/>
+        <property name="qrLogService" ref="qrLogService"/>
+    </bean>
+
+    <bean id="codeAction" class="com.pupuly.webapp.action.qr.QrCodeAction" scope="prototype">
+        <property name="qrLogService" ref="qrLogService"/>
+    </bean>
+
+    <bean id="productAction" class="com.pupuly.webapp.action.product.ProductAction" scope="prototype">
+        <property name="productService"  ref="productService"/>
+        <property name="qrService" ref="qrImgService"/>
+    </bean>
+</beans>
